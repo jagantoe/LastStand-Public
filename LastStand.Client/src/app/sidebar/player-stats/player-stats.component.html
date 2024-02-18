@@ -1,0 +1,118 @@
+<select class="select w-full text-center mb-3" [(ngModel)]="val" (ngModelChange)="set($event)">
+    <option disabled selected>Pick a player</option>
+    @for (player of players(); track player.name) {
+    <option [value]="player.name">{{player.name}}</option>
+    }
+</select>
+@if (currentPlayer(); as player){
+<div class="divider w-full col-span-4">{{player.name}}</div>
+<div class="stats shadow w-full mb-3 font-mono">
+    <div class="stat place-items-center">
+        <div class="stat-title">Health</div>
+        <div class="stat-value text-success">{{player.currentHealth}}/{{player.maxHealth}}</div>
+        <div class="stat-desc text-secondary">Deaths: {{player.deaths}}</div>
+    </div>
+    <div class="stat place-items-center">
+        <div class="stat-title">Active</div>
+        <div class="stat-value text-success">
+            @if(player.active){ ✔ }
+            @else { ❌ }
+        </div>
+        @if (player.commands.length > 0) {
+        <div class="stat-desc text-secondary">{{player.commands[0]}}</div>
+        }
+    </div>
+    <div class="stat place-items-center">
+        <div class="stat-title">Total damage</div>
+        <div class="stat-value text-error">{{player.totalDamageDone}}</div>
+        <div class="stat-desc text-secondary">Combat: {{player.combatBehaviour}}</div>
+    </div>
+</div>
+<div class="stats shadow w-full mb-3">
+    <div class="stat place-items-center">
+        <div class="stat-title">Strength</div>
+        <div class="stat-value text-primary">{{player.derivedStats.strength}}</div>
+        <div class="stat-desc text-secondary">Base: {{player.baseStats.strength}}</div>
+    </div>
+    <div class="stat place-items-center">
+        <div class="stat-title">Defense</div>
+        <div class="stat-value text-primary">{{player.derivedStats.defense}}</div>
+        <div class="stat-desc text-secondary">Base: {{player.baseStats.defense}}</div>
+    </div>
+    <div class="stat place-items-center">
+        <div class="stat-title">Speed</div>
+        <div class="stat-value text-primary">{{player.derivedStats.speed}}</div>
+        <div class="stat-desc text-secondary">Base: {{player.baseStats.speed}}</div>
+    </div>
+    <div class="stat place-items-center">
+        <div class="stat-title">Damage</div>
+        <div class="stat-value text-primary">{{player.derivedStats.damage}}</div>
+        <div class="stat-desc text-secondary">Base: {{player.baseStats.damage}}</div>
+    </div>
+</div>
+<div class="stats shadow w-full mb-3">
+    <div class="stat place-items-center">
+        <div class="stat-title">Attackspeed</div>
+        <div class="stat-value text-primary">{{player.derivedStats.attackSpeed}}</div>
+    </div>
+    <div class="stat place-items-center">
+        <div class="stat-title">Range</div>
+        <div class="stat-value text-primary">{{player.derivedStats.attackRange}}</div>
+    </div>
+    <div class="stat place-items-center">
+        <div class="stat-title">Pierce</div>
+        <div class="stat-value text-primary">{{player.derivedStats.pierce}}</div>
+    </div>
+    <div class="stat place-items-center">
+        <div class="stat-title">Block</div>
+        <div class="stat-value text-primary">{{player.derivedStats.block}}</div>
+    </div>
+</div>
+<div class="divider w-full col-span-4">Bag (max {{player.bag.limit}})</div>
+<div class="stats shadow w-full mb-3">
+    <div class="stat place-items-center">
+        <div class="stat-title">Grain</div>
+        <div class="stat-value text-primary">{{player.bag.grain}}</div>
+        <div class="stat-desc text-secondary">{{(1 + player.derivedStats.grainModifier) * 100}}%</div>
+    </div>
+    <div class="stat place-items-center">
+        <div class="stat-title">Wood</div>
+        <div class="stat-value text-primary">{{player.bag.wood}}</div>
+        <div class="stat-desc text-secondary">{{(1 + player.derivedStats.woodModifier) * 100}}%</div>
+    </div>
+    <div class="stat place-items-center">
+        <div class="stat-title">Stone</div>
+        <div class="stat-value text-primary">{{player.bag.stone}}</div>
+        <div class="stat-desc text-secondary">{{(1 + player.derivedStats.stoneModifier) * 100}}%</div>
+    </div>
+    <div class="stat place-items-center">
+        <div class="stat-title">Steel</div>
+        <div class="stat-value text-primary">{{player.bag.steel}}</div>
+        <div class="stat-desc text-secondary">{{(1 + player.derivedStats.steelModifier) * 100}}%</div>
+    </div>
+</div>
+<div class="divider w-full col-span-4">Equiped items</div>
+<div class="flex flex-wrap justify-around gap-3">
+    @if (player.equipedItems['Main']; as main){
+    <div class="w-12 tooltip" [attr.data-tip]="main"><img [src]="'assets/items/' + main + '.png'" /></div>
+    }
+    @if (player.equipedItems['Additional']; as additional){
+    <div class="w-12 tooltip" [attr.data-tip]="additional"><img [src]="'assets/items/' + additional + '.png'" /></div>
+    }
+    @if (player.equipedItems['Head']; as head){
+    <div class="w-12 tooltip" [attr.data-tip]="head"><img [src]="'assets/items/' + head + '.png'" /></div>
+    }
+    @if (player.equipedItems['Body']; as body){
+    <div class="w-12 tooltip" [attr.data-tip]="body"><img [src]="'assets/items/' + body + '.png'" /></div>
+    }
+    @if (player.equipedItems['Hands']; as hands){
+    <div class="w-12 tooltip" [attr.data-tip]="hands"><img [src]="'assets/items/' + hands + '.png'" /></div>
+    }
+    @if (player.equipedItems['Legs']; as legs){
+    <div class="w-12 tooltip" [attr.data-tip]="legs"><img [src]="'assets/items/' + legs + '.png'" /></div>
+    }
+    @if (player.equipedItems['Feet']; as feet){
+    <div class="w-12 tooltip" [attr.data-tip]="feet"><img [src]="'assets/items/' + feet + '.png'" /></div>
+    }
+</div>
+}

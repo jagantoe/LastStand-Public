@@ -1,0 +1,20 @@
+<drag-scroll class="w-full h-full" [scrollbar-hidden]="true">
+    <div class="join fixed bottom-0">
+        @for (option of zoomOptions; track $index) {
+        <input class="join-item btn btn-square opacity-70 hover:opacity-100 rounded-none" type="radio" name="zoom"
+            [value]="option" [(ngModel)]="zoom" [attr.aria-label]="100 * (4 / option) + '%'"
+            (ngModelChange)="setScale(option)" />
+        }
+    </div>
+    <div class="grid grid-rows-1 grid-cols-1 min-w-full">
+        <canvas #clouds class="col-start-1 row-start-1"></canvas>
+        <canvas #background class="col-start-1 row-start-1"></canvas>
+        <canvas #characters class="col-start-1 row-start-1"></canvas>
+    </div>
+</drag-scroll>
+@if(game$ | async){}
+
+<img #tilesimg src="assets/tiles.png" class="hidden" priority>
+<img #buildingsimg src="assets/buildings.png" class="hidden" priority>
+<img #attackersimg src="assets/attackers.png" class="hidden" priority>
+<img #playersimg src="assets/players.png" class="hidden" priority>

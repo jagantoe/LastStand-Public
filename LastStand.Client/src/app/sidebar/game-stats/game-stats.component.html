@@ -1,0 +1,53 @@
+<div class="stats shadow w-full font-mono">
+    <div class="stat place-items-center">
+        <div class="stat-title">Round</div>
+        <div class="stat-value text-primary"><app-countdown [number]="game.round" /></div>
+        <div class="stat-desc text-secondary">Highscore: {{game.roundHighScore}}</div>
+    </div>
+    <div class="stat place-items-center">
+        <div class="stat-title">Base Health</div>
+        <div class="stat-value text-success">{{game.baseHealth}}</div>
+        <div class="stat-desc text-secondary">Attackers killed: {{game.attackersKilled}}</div>
+    </div>
+    <div class="stat place-items-center">
+        <div class="stat-title">Active</div>
+        <div class="stat-value text-success">
+            @if(game.gameActive){ ✔ }
+            @else { ❌ }
+        </div>
+        <div class="stat-desc text-secondary">Timer: {{game.timer}}s</div>
+    </div>
+</div>
+<div class="divider w-full col-span-4">Resources (max {{game.resources.limit}})</div>
+<div class="flex items-center">
+    <div class="flex w-1/4">
+        <img [src]="'assets/items/grain.png'" class="w-12" />
+        <app-countdown [number]="game.resources.grain" class="stat-value" />
+    </div>
+    <progress class="progress progress-primary w-3/4" [value]="game.resources.grain"
+        [max]="game.resources.limit"></progress>
+</div>
+<div class="flex items-center">
+    <div class="flex w-1/4">
+        <img [src]="'assets/items/wood.png'" class="w-12" />
+        <app-countdown [number]="game.resources.wood" class="stat-value" />
+    </div>
+    <progress class="progress progress-primary w-3/4" [value]="game.resources.wood"
+        [max]="game.resources.limit"></progress>
+</div>
+<div class="flex items-center">
+    <div class="flex w-1/4">
+        <img [src]="'assets/items/stone.png'" class="w-12" />
+        <app-countdown [number]="game.resources.stone" class="stat-value" />
+    </div>
+    <progress class="progress progress-primary w-3/4" [value]="game.resources.stone"
+        [max]="game.resources.limit"></progress>
+</div>
+<div class="flex items-center gap-3 justify-between">
+    <div class="flex w-1/4">
+        <img [src]="'assets/items/steel.png'" class="w-12" />
+        <app-countdown [number]="game.resources.steel" class="stat-value" />
+    </div>
+    <progress class="progress progress-primary w-3/4" [value]="game.resources.steel"
+        [max]="game.resources.limit"></progress>
+</div>

@@ -1,0 +1,55 @@
+<select class="select w-full text-center mb-3" [(ngModel)]="val" (ngModelChange)="set($event)">
+    <option disabled selected>Pick a player</option>
+    @for (character of characters(); track character.name) {
+    <option [value]="character.name">{{character.name}}</option>
+    }
+</select>
+@if (currentCharacter(); as character){
+<div class="divider w-full col-span-4">{{character.name}}</div>
+<div class="stats shadow w-full mb-3 font-mono">
+    <div class="stat place-items-center">
+        <div class="stat-title">Health</div>
+        <div class="stat-value text-success">{{character.currentHealth}}/{{character.maxHealth}}</div>
+    </div>
+    <div class="stat place-items-center">
+        <div class="stat-title">Total damage</div>
+        <div class="stat-value text-error">{{character.totalDamageDone}}</div>
+    </div>
+</div>
+<div class="stats shadow w-full mb-3">
+    <div class="stat place-items-center">
+        <div class="stat-title">Strength</div>
+        <div class="stat-value text-primary">{{character.baseStats.strength}}</div>
+    </div>
+    <div class="stat place-items-center">
+        <div class="stat-title">Defense</div>
+        <div class="stat-value text-primary">{{character.baseStats.defense}}</div>
+    </div>
+    <div class="stat place-items-center">
+        <div class="stat-title">Speed</div>
+        <div class="stat-value text-primary">{{character.baseStats.speed}}</div>
+    </div>
+    <div class="stat place-items-center">
+        <div class="stat-title">Damage</div>
+        <div class="stat-value text-primary">{{character.baseStats.damage}}</div>
+    </div>
+</div>
+<div class="stats shadow w-full mb-3">
+    <div class="stat place-items-center">
+        <div class="stat-title">Attackspeed</div>
+        <div class="stat-value text-primary">{{character.baseStats.attackSpeed}}</div>
+    </div>
+    <div class="stat place-items-center">
+        <div class="stat-title">Range</div>
+        <div class="stat-value text-primary">{{character.baseStats.attackRange}}</div>
+    </div>
+    <div class="stat place-items-center">
+        <div class="stat-title">Pierce</div>
+        <div class="stat-value text-primary">{{character.baseStats.pierce}}</div>
+    </div>
+    <div class="stat place-items-center">
+        <div class="stat-title">Block</div>
+        <div class="stat-value text-primary">{{character.baseStats.block}}</div>
+    </div>
+</div>
+}

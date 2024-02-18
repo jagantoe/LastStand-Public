@@ -1,0 +1,27 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<FrameworkReference Include="Microsoft.AspNetCore.App" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="7.3.1" />
+		<PackageReference Include="Microsoft.Orleans.Client" Version="8.0.0" />
+		<PackageReference Include="Microsoft.Orleans.Clustering.AzureStorage" Version="8.0.0" />
+		<PackageReference Include="Microsoft.Orleans.Persistence.AzureStorage" Version="8.0.0" />
+		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+		<PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.1" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\LastStand.Dashboard\LastStand.Dashboard.csproj" />
+		<ProjectReference Include="..\LastStand.Grains\LastStand.Grains.csproj" />
+	</ItemGroup>
+
+</Project>

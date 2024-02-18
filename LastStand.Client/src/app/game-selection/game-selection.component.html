@@ -1,0 +1,7 @@
+<div role="tablist" class="tabs tabs-bordered">
+    @for (game of (games$ | async); track $index) {
+    <a role="tab" class="tab" [class.tab-active]="game == activeGame()" (click)="select(game)">{{game}}</a>
+    } @empty {
+    <a role="tab" class="tab tab-active">NO GAMES FOUND</a>
+    }
+</div>

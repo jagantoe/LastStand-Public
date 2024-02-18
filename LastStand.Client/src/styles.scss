@@ -1,0 +1,38 @@
+/* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+.stats {
+    @apply font-mono;
+}
+
+:root .custom-countdown {
+    line-height: 1em;
+}
+
+.custom-countdown {
+    display: inline-flex;
+
+    &>* {
+        height: 1em;
+        @apply inline-block overflow-y-hidden;
+
+        &:before {
+            position: relative;
+            content: "0\A 1\A 2\A 3\A 4\A 5\A 6\A 7\A 8\A 9";
+            white-space: pre;
+            top: calc(var(--value) * -1em);
+        }
+    }
+}
+
+.custom-countdown {
+    &>* {
+        &:before {
+            text-align: center;
+            transition: all 0.5s cubic-bezier(1, 0, 0, 1);
+        }
+    }
+}

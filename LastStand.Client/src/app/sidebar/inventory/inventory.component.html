@@ -1,0 +1,11 @@
+<div class="flex flex-wrap">
+    <div class="divider w-full">Inventory</div>
+    @for (item of inventory; track item.name) {
+    <div class="stat w-1/3 tooltip inline-grid border-none" [attr.data-tip]="item.name">
+        <div class="stat-figure text-primary w-12">
+            <img [src]="'assets/items/' + item.name + '.png'" />
+        </div>
+        <div class="stat-value text-primary">{{item.amount}}</div>
+    </div>
+    }
+</div>
